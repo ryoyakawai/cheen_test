@@ -31,3 +31,9 @@ module.exports = {
 $ npm install
 $ npx codeceptjs run
 ```
+
+## To ignoreing update of env.js for save your twitter credential
+
+``bash
+$ git update-index --assume-unchanged env.js
+```
