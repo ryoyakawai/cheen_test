@@ -34,6 +34,6 @@ $ npx codeceptjs run
 
 ## To ignoreing update of env.js for save your twitter credential
 
-``bash
+```bash
 $ git update-index --assume-unchanged env.js
 ```
