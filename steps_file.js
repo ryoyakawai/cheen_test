@@ -14,7 +14,6 @@ module.exports = function() {
       this.amOnPage(loginurl);
       this.scrollTo(login_xpath);
       this.click(login_xpath);
-      this.waitForElement(twitter.id, 5);
       this.fillField(twitter.id, id);
       this.fillField(twitter.pw, pw);
       this.click(twitter.signin_button)

@@ -3,9 +3,9 @@ Feature('Bang - Bang - Bang Test');
 const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
 
 Scenario('Bang Bang Bang Gang', async ({ I }) => {
-  let prefixText = ""
+  let paramText = ""
   if(typeof process.env.paramtext != "undefined") {
-    prefixText = process.env.paramtext
+    paramText = process.env.paramtext
   }
 
   const DeclearEnvironment = require("./declearenvironment.js")
@@ -30,23 +30,26 @@ Scenario('Bang Bang Bang Gang', async ({ I }) => {
   I.click(connect_button)
 
   let bang_button = {xpath: "//div[@id='attack']"}
-  I.waitForElement(bang_button, 5)
-  I.scrollTo(bang_button);
-
   let setting_button = {xpath: "//div[@id='settings']"}
   let message_box = {xpath: "//input[@id='sendstr']"}
   let save_message_button = {xpath: "//div[@id='sbstore']"}
   for(let i=0; i<total_bang_num; i++) {
-    await I.click(bang_button)
+    I.waitForElement(bang_button, 20)
+    I.scrollTo(bang_button);
     //
     I.scrollTo(setting_button);
     I.click(setting_button);
-    if(prefixText != "") {
-      I.fillField(message_box, prefixText)
+    if(paramText != "") {
+      I.fillField(message_box, paramText)
     } else {
       I.fillField(message_box, `テスト回数：${i}/${total_bang_num}`)
     }
+    await sleep(4000)
     I.click(save_message_button)
+    await sleep(4000)
+    await I.click(bang_button)
+    await sleep(4000)
+
   }
 
 });
