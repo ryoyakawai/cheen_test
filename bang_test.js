@@ -3,6 +3,11 @@ Feature('Bang - Bang - Bang Test');
 const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
 
 Scenario('Bang Bang Bang Gang', async ({ I }) => {
+  let prefixText = ""
+  if(typeof process.env.paramtext != "undefined") {
+    prefixText = process.env.paramtext
+  }
+
   const DeclearEnvironment = require("./declearenvironment.js")
   const env = require("./env.js")
 
@@ -36,7 +41,11 @@ Scenario('Bang Bang Bang Gang', async ({ I }) => {
     //
     I.scrollTo(setting_button);
     I.click(setting_button);
-    I.fillField(message_box, `テスト回数：${i}/${total_bang_num}`)
+    if(prefixText != "") {
+      I.fillField(message_box, prefixText)
+    } else {
+      I.fillField(message_box, `テスト回数：${i}/${total_bang_num}`)
+    }
     I.click(save_message_button)
   }
 
