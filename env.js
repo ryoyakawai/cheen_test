@@ -1,10 +1,12 @@
 "use strict";
 
-const base_url = null
-const bang_count = 1000
+const base_url = "https://c.4191333.xyz:4001/viewer/"
+const bang_count = 1
 const tw = {
-  id: null,
-  pw: null
+  id: "fairetokyo",
+  pw: "kawairyoya1234"
+  // fairetokyo
+  // kawairyoya1234
 }
 
 module.exports = {

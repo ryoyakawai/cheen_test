@@ -4,7 +4,7 @@ module.exports = function() {
   return actor({
     // Define custom steps here, use 'this' to access default methods of I.
     // It is recommended to place a general 'login' function here.
-    signin: function(loginurl="", id="", pw="") {
+    signin: async function(loginurl="", id="", pw="") {
       let login_xpath = {xpath: "//div[@id='loginbutton']"}
       let twitter = {
         id: {xpath: "//input[@id='username_or_email']"},
@@ -14,6 +14,7 @@ module.exports = function() {
       this.amOnPage(loginurl);
       this.scrollTo(login_xpath);
       this.click(login_xpath);
+      this.waitForElement(twitter.signin_button, 20)
       this.fillField(twitter.id, id);
       this.fillField(twitter.pw, pw);
       this.click(twitter.signin_button)

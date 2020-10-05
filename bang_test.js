@@ -23,10 +23,11 @@ Scenario('Bang Bang Bang Gang', async ({ I }) => {
   let twitter_id_xpath = {xpath: "//input[@id='username_or_email']"}
   let twitter_pw_xpath = {xpath: "//input[@id='password']"}
   I.amOnPage(base_url);
-  I.signin(base_url, twitter_id, twitter_pw)
+  I.signin(base_url, twitter_id, twitter_pw);
+  //await sleep(4000);
 
   let connect_button = {xpath: "//div[@id='connect_camera']"}
-  I.waitForElement(connect_button, 20)
+  await I.waitForElement(connect_button, 420)
   I.click(connect_button)
 
   let bang_button = {xpath: "//div[@id='attack']"}
@@ -34,7 +35,7 @@ Scenario('Bang Bang Bang Gang', async ({ I }) => {
   let message_box = {xpath: "//input[@id='sendstr']"}
   let save_message_button = {xpath: "//div[@id='sbstore']"}
   for(let i=0; i<total_bang_num; i++) {
-    I.waitForElement(bang_button, 20)
+    I.waitForElement(bang_button, 180)
     I.scrollTo(bang_button);
     //
     I.scrollTo(setting_button);
@@ -44,11 +45,15 @@ Scenario('Bang Bang Bang Gang', async ({ I }) => {
     } else {
       I.fillField(message_box, `テスト回数：${i}/${total_bang_num}`)
     }
-    await sleep(4000)
+    await sleep(3000)
     I.click(save_message_button)
-    await sleep(4000)
-    await I.click(bang_button)
-    await sleep(4000)
+    await sleep(3000)
+    I.waitForElement(bang_button, 240);
+    for(let bg=0; bg<15; bg++) {
+      await I.click(bang_button)
+      await sleep(200)
+    }
+    await sleep(3000)
 
   }
 
